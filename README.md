@@ -1,24 +1,66 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
+## users テーブル
+|Column              |Type   |Options                  |
+|------------------- |------ |-------------------------|
+| nickname           |string |null: false -------------|ニックネーム
+| email              |string |null: false, unique: true|メールアドレス
+| encrypted_password |string |null: false              |パスワード
+| last_name          |string |null: false              |名字(全角）
+| first_name         |string |null: false              |名前(全角）
+| last_name_kana     |string |null: false              |名字(カナ）
+| first_name_kana    |string |null: false              |名前(カナ）
+| year               |integer|null: false              |西暦
+| month              |integer|null: false              |月
+| date               |integer|null: false              |日
+### Association
+* has_many :product informations 
+* has_many :purchase records 
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+## product informations テーブル
+|Column           |Type      |Options                          |
+|---------------- |----------|---------------------------------|
+| image           |text      |null: false                      |商品の画像
+| name            |string    |null: false                      |商品の名前
+| description     |text      |null: false                      |商品の説明
+| category        |string    |null: false                      |商品のカテゴリー
+| situation       |string    |null: false                      |商品の状態
+| load            |string    |null: false                      |配送料の負担
+| area            |string    |null: false                      |発送元の地域
+| days            |integer   |null: false                      |発送までの日数
+| price           |integer   |null: false                      |商品の価格
+| user            |references|null: false, foreign_key: true   |外部キー
+### Association
+- belongs_to :user 
+- has_one :shopping information 
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## purchase records テーブル
+|Column              |Type      |Options                        |
+|--------------------|----------|-------------------------------|
+| buyer              |string    |null: false                    |購入者
+| name               |string    |null: false                    |商品の名前
+| product information|references|null: false, foreign_key: true |外部キー
+### Association
+belongs_to :user 
+belongs_to :shopping information
 
-* Deployment instructions
 
-* ...
+## shopping informationsテーブル
+|Column           |Type       |Options                         |
+|---------------- |---------- |--------------------------------|
+| postal code     |integer    |null: false                     |郵便番号
+| prefectures     |string     |null: false                     |都道府県
+| municipalities  |string     |null: false                     |市区町村
+| address         |integer    |null: false                     |番地
+| building name   |string     |null: false                     |建物名 
+| telephone number|integer    |null: false                     |電話番号
+| purchase record |references |null: false, foreign_key: true  |外部キー
+### Association
+belongs_to :product information
+belongs_to :purchase record
