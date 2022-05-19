@@ -28,8 +28,8 @@
 | category_id     |string    |null: false                      |商品のカテゴリー
 | situation_id    |string    |null: false                      |商品の状態
 | load_id         |string    |null: false                      |配送料の負担
-| area_id         |string    |null: false                      |発送元の地域
-| days_id         |integer   |null: false                      |発送までの日数
+| area_id         |integer   |null: false                      |発送元の地域
+| period_id       |integer   |null: false                      |発送までの日数（期間）
 | price           |integer   |null: false                      |商品の価格
 | user            |references|null: false, foreign_key: true   |外部キー
 ### Association
@@ -46,14 +46,14 @@
 ### Association
 belongs_to :user 
 belongs_to :product information
-belongs_to :shopping information
+has_one :shopping information
 
 
 ## shopping informationsテーブル
 |Column           |Type       |Options                         |
 |---------------- |---------- |--------------------------------|
 | postal code     |string     |null: false                     |郵便番号
-| area_id         |string     |null: false                     |都道府県
+| area_id         |integer    |null: false                     |都道府県
 | municipalities  |string     |null: false                     |市区町村
 | address         |string     |null: false                     |番地
 | building name   |string     |                                |建物名 
