@@ -34,7 +34,7 @@
 | user            |references|null: false, foreign_key: true   |外部キー
 ### Association
 - belongs_to :user 
-- has_one :purchase_records
+- has_one :purchase_record
 
 
 
