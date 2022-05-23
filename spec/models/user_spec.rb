@@ -2,6 +2,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
+  end
   describe 'ユーザー新規登録' do
     it 'nicknameが空だと登録できない' do
       # @user.nickname = ''
@@ -43,8 +44,7 @@ RSpec.describe User, type: :model do
     it 'email,が空だと登録できない' do
       # @user.email= ''
       @user.valid?
-      binding.pry
-      expect(@user.errors.full_messages).to include('')
+      expect(@user.errors.full_messages).to include("Last name can't be blank")
     end
 
     it 'email,が一意性出ないと登録できない' do

@@ -9,6 +9,5 @@ FactoryBot.define do
     last_name_kana { '' }
     first_name_kana { '' }
     birthday { '' }
-    email { '' }
   end
 end
