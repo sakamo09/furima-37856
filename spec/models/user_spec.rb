@@ -87,7 +87,6 @@ describe 'ユーザー新規登録' do
       @user.password = '123456'
       @user.password_confirmation = '1234567'
       @user.valid?
-      binding.pry
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
     
