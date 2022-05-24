@@ -1,12 +1,16 @@
 class ProductInformation < ApplicationRecord
   has_one_attached :image
-
-  validates :nickname, presence: true
-  validates :last_name, presence: true
-  validates :first_name, presence: true
-  validates :last_name_kana, presence: true
-  validates :first_name_kana, presence: true
-  validates :birthday, presence: true
+  
+  validates :image, presence: true
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :category_id, presence: true
+  validates :situation_id, presence: true
+  validates :load_id , presence: true
+  validates :area_id , presence: true
+  validates :period_id , presence: true
+  validates :price  , presence: true
+  
   # belongs_to :user 
   # has_one :purchase_record
 
