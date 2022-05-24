@@ -1,4 +1,12 @@
 class ProductInformation < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :situation
+  belongs_to :load
+  belongs_to :area
+  belongs_to :period
+  
+  
   has_one_attached :image
   
   validates :image, presence: true
