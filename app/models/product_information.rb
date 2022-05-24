@@ -11,12 +11,12 @@ class ProductInformation < ApplicationRecord
   
   validates :image, presence: true
   validates :name, presence: true
-  validates :description, presence: true
-  validates :category_id, presence: true
-  validates :situation_id, presence: true
-  validates :load_id , presence: true
-  validates :area_id , presence: true
-  validates :period_id , presence: true
+  validates :description, presence: true, 
+  validates :category_id, presence: true, numericality: { other_than: 1 } 
+  validates :situation_id, presence: true, numericality: { other_than: 1 } 
+  validates :load_id , presence: true, numericality: { other_than: 1 } 
+  validates :area_id , presence: true, numericality: { other_than: 1 } 
+  validates :period_id , presence: true, numericality: { other_than: 1 } 
   validates :price  , presence: true
   
   # belongs_to :user 
