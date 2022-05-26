@@ -72,7 +72,7 @@ RSpec.describe ProductInformation, type: :model do
       it 'priceが¥300~¥9,999,999でないと登録できない' do
           @product_information.price = '10'
           @product_information.valid?
-           expect(@product_information.errors.full_messages).to include("Price is invalid")
+           expect(@product_information.errors.full_messages).to include("Price can't be blank")
           end
      
        it 'priceが半角数値でないと登録できない' do
