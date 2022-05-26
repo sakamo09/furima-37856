@@ -117,7 +117,7 @@ RSpec.describe ProductInformation, type: :model do
          expect(@product_information.errors.full_messages).to include("Price can't be blank")
        end
 
-       it 'userが紐付いていなければ出品できない' do
+       it 'user,が紐付いていなければ出品できない' do
         @product_information.user = nil
         @product_information.valid?
          expect(@product_information.errors.full_messages).to include("User must exist")
