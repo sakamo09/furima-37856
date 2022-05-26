@@ -4,6 +4,7 @@ class ProductInformationsController < ApplicationController
   
   
   def index
+    @product_informations = ProductInformation.all
   end
 
   def new
