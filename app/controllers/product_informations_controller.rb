@@ -1,6 +1,6 @@
 class ProductInformationsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
- 
+  before_action :authenticate_user!, except: [:index, :show]
+
   
   
   def index
@@ -20,6 +20,10 @@ class ProductInformationsController < ApplicationController
    end
   end
 
+  def show
+    @product_information = ProductInformation.find(params[:id])
+  end
+
 
 
 
@@ -32,4 +36,7 @@ class ProductInformationsController < ApplicationController
   def product_information_params
    params.require(:product_information).permit(:image, :name, :description, :category_id, :situation_id, :load_id, :area_id, :period_id, :price ).merge(user_id: current_user.id)
   end
+
+  
+
 end

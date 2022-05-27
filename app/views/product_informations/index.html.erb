@@ -130,7 +130,7 @@
 
       <% @product_informations.each do |product_information| %>
       <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to product_information_path(product_information.id), method: :get do %>
          <div class='item-img-content'>
           <%= image_tag product_information.image, class: "item-img" %>
 
@@ -161,7 +161,7 @@
      
       <% if @product_informations.empty?%>
       <li class='list'>
-        <%= link_to '#' do %>
+         <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>
