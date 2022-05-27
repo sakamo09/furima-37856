@@ -24,7 +24,19 @@ class ProductInformationsController < ApplicationController
     @product_information = ProductInformation.find(params[:id])
   end
 
-
+  def edit
+    @product_information = ProductInformation.find(params[:id])
+    # redirect_to root_path unless current_user == @product_information.user
+  end
+  
+  def update
+    @product_information = ProductInformation.find(params[:id])
+    if @product_information.update(product_information_params)
+      redirect_to product_information_path(@product_information)
+    else
+      render :edit
+    end
+  end
 
 
 
