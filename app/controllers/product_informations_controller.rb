@@ -1,6 +1,6 @@
 class ProductInformationsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
- 
+  before_action :authenticate_user!, except: [:index, :show]
+
   
   
   def index
@@ -38,6 +38,5 @@ class ProductInformationsController < ApplicationController
   end
 
   
-  @product_information = product_information.find(params[:id])
 
 end
