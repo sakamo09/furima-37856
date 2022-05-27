@@ -21,6 +21,7 @@ class ProductInformationsController < ApplicationController
   end
 
   def show
+    @product_information = ProductInformation.find(params[:id])
   end
 
 
@@ -35,4 +36,8 @@ class ProductInformationsController < ApplicationController
   def product_information_params
    params.require(:product_information).permit(:image, :name, :description, :category_id, :situation_id, :load_id, :area_id, :period_id, :price ).merge(user_id: current_user.id)
   end
+
+  
+  @product_information = product_information.find(params[:id])
+
 end
