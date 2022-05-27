@@ -20,6 +20,9 @@ class ProductInformationsController < ApplicationController
    end
   end
 
+  def show
+  end
+
 
 
 
