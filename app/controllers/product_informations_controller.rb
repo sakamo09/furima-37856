@@ -1,6 +1,6 @@
 class ProductInformationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show,]
-  before_action :set_tweet, only: [:show, :edit, :update]
+  before_action :set_tweet, only: [:show, :edit, :update, :destory]
 
 
   
@@ -38,6 +38,16 @@ class ProductInformationsController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    @product_information = ProductInformation.find(params[:id])
+    if @product_information.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
+
 
 
 
