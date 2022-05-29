@@ -1,5 +1,6 @@
 class ProductInformationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show,]
+  before_action :set_tweet, only: [:show, :edit, :update]
 
 
   
@@ -22,18 +23,15 @@ class ProductInformationsController < ApplicationController
   end
 
   def show
-    @product_information = ProductInformation.find(params[:id])
   end
 
   def edit
-    @product_information = ProductInformation.find(params[:id])
     unless current_user == @product_information.user
       redirect_to root_path
     end
    end
   
   def update
-    @product_information = ProductInformation.find(params[:id])
     if @product_information.update(product_information_params)
       redirect_to product_information_path(@product_information)
     else
@@ -50,6 +48,10 @@ class ProductInformationsController < ApplicationController
 
   def product_information_params
    params.require(:product_information).permit(:image, :name, :description, :category_id, :situation_id, :load_id, :area_id, :period_id, :price ).merge(user_id: current_user.id)
+  end
+
+  def set_tweet
+    @product_information = ProductInformation.find(params[:id])
   end
 
   
