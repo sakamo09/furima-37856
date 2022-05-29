@@ -40,7 +40,6 @@ class ProductInformationsController < ApplicationController
   end
 
   def destroy
-    @product_information = ProductInformation.find(params[:id])
     if @product_information.destroy
       redirect_to root_path
     else
