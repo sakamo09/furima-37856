@@ -26,8 +26,7 @@ class ProductInformationsController < ApplicationController
 
   def edit
     @product_information = ProductInformation.find(params[:id])
-    # redirect_to root_path unless current_user == @product_information.user
-  end
+   end
   
   def update
     @product_information = ProductInformation.find(params[:id])
