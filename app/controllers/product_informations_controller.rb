@@ -1,6 +1,8 @@
 class ProductInformationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show,]
-  before_action :set_tweet, only: [:show, :edit, :update]
+  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+  before_action :contributor_confirmation, only: [:edit, :destroy]
+ 
 
 
   
@@ -26,10 +28,7 @@ class ProductInformationsController < ApplicationController
   end
 
   def edit
-    unless current_user == @product_information.user
-      redirect_to root_path
-    end
-   end
+  end
   
   def update
     if @product_information.update(product_information_params)
@@ -38,6 +37,15 @@ class ProductInformationsController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    if @product_information.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
+
 
 
 
@@ -54,6 +62,12 @@ class ProductInformationsController < ApplicationController
     @product_information = ProductInformation.find(params[:id])
   end
 
-  
+  def contributor_confirmation
+    unless current_user == @product_information.user
+      redirect_to root_path
+    end
+  end
 
+
+  
 end
