@@ -1,4 +1,4 @@
-class PurchaseRecordShoppinIinformation
+class PurchaseRecordShoppingInformation
 include ActiveModel::Model
 attr_accessor :postal_code, :area_id , :municipalities, :address, :building_name, :telephone_number, :user_id, :product_information_id
 

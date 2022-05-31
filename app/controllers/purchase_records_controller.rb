@@ -1,9 +1,9 @@
 class PurchaseRecordsController < ApplicationController
 
   def index
-    @purchase_records = PurchaseRecordShoppinIinformation.new
+    @purchase_records = PurchaseRecordShoppingInformation.new
+    @product_information = ProductInformation.find(params[:product_information_id])
   end
-
 
 
 
