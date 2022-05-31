@@ -25,12 +25,12 @@
 
    <% if user_signed_in? %>
     <% if current_user.id == @product_information.user_id %>
-    <%= link_to "商品の編集", edit_product_information_path, method: :get, class: "item-red-btn" %>
+    <%= link_to "商品の編集", edit_product_information_path(@product_information), method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
-    <%= link_to "削除", product_information_path, method: :delete, class:"item-destroy" %>
+    <%= link_to "削除", product_information_path(@product_information), method: :delete, class:"item-destroy" %>
     
     <% else %>
-    <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+    <%= link_to "購入画面に進む", product_information_purchase_records_path(@product_information) ,class:"item-red-btn"%>
     <% end %>
    <% end %>
 
