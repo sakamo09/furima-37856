@@ -20,6 +20,6 @@ class ProductInformation < ApplicationRecord
   validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 999999, message: "is invalid"}
   
   belongs_to :user 
-  # has_one :purchase_record
+  has_one :purchase_record
 
 end
