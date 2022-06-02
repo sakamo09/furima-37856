@@ -1,14 +1,18 @@
 class PurchaseRecordsController < ApplicationController
-
+  before_action :authenticate_user!, except: [:index]
+  
   def index
     @purchase_records = PurchaseRecordShoppingInformation.new
     @product_information = ProductInformation.find(params[:product_information_id])
+  
+  
   end
 
 
 
+
+
   def create
-    # binding.pry
     @product_information = ProductInformation.find(params[:product_information_id])
     @purchase_records = PurchaseRecordShoppingInformation.new(purchase_record_params)
     if @purchase_records.valid?
