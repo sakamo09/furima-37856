@@ -16,6 +16,8 @@ RSpec.describe PurchaseRecordShoppingInformation, type: :model do
       expect(@purchase_record_shopping_information).to be_valid
     end
 
+    
+
   context '商品購入できないとき' do
    
     it 'postal_code,が空では登録できない' do
@@ -58,6 +60,13 @@ RSpec.describe PurchaseRecordShoppingInformation, type: :model do
       @purchase_record_shopping_information.telephone_number = '000'
       @purchase_record_shopping_information.valid?
       expect(@purchase_record_shopping_information.errors.full_messages).to include("Telephone number is invalid")
+    end
+
+
+    it "tokenが空では登録できないこと" do
+      @purchase_record_shopping_information.token = nil
+      @purchase_record_shopping_information.valid?
+      expect(@purchase_record_shopping_information.errors.full_messages).to include("Token can't be blank")
     end
 
 
