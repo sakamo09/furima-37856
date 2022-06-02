@@ -126,20 +126,23 @@
     <div class="subtitle" >
       新規投稿商品
     </div>
+    
     <ul class='item-lists'>
-
+   
       <% @product_informations.each do |product_information| %>
+      
       <li class='list'>
         <%= link_to product_information_path(product_information.id), method: :get do %>
          <div class='item-img-content'>
           <%= image_tag product_information.image, class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう %>
+          
+          <% if product_information.purchase_record.present?%>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
-
+         
+        <% end %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
