@@ -1,11 +1,10 @@
 class PurchaseRecordsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
-  
+  before_action :authenticate_user!
+  before_action :contributor_confirmation, only: [:index, :create]
+
   def index
     @purchase_records = PurchaseRecordShoppingInformation.new
     @product_information = ProductInformation.find(params[:product_information_id])
-  
-  
   end
 
 
@@ -39,6 +38,12 @@ class PurchaseRecordsController < ApplicationController
         card: purchase_record_params[:token],   
         currency: 'jpy'                 
       )
+  end
+
+  def contributor_confirmation
+    unless @purchase_record_id.present?
+    redirect_to root_path 
+    end
   end
  
 
