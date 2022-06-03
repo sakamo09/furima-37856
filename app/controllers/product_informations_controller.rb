@@ -3,6 +3,7 @@ class ProductInformationsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy] 
   before_action :contributor_confirmation, only: [:edit, :destroy]
  
+ 
 
 
   
@@ -25,9 +26,13 @@ class ProductInformationsController < ApplicationController
   end
 
   def show
+ 
   end
 
   def edit
+    if @product_information.purchase_record.present?
+      redirect_to root_path
+    end
   end
   
   def update
@@ -68,6 +73,9 @@ class ProductInformationsController < ApplicationController
     end
   end
 
+ 
+
+  
 
   
 end
