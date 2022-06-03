@@ -1,10 +1,15 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!
-  before_action :contributor_confirmation, only: [:index, :create]
+  before_action :set_product_information
+  before_action :contributor_confirmation
 
   def index
     @purchase_records = PurchaseRecordShoppingInformation.new
-    @product_information = ProductInformation.find(params[:product_information_id])
+   
+
+
+
+  
   end
 
 
@@ -12,7 +17,7 @@ class PurchaseRecordsController < ApplicationController
 
 
   def create
-    @product_information = ProductInformation.find(params[:product_information_id])
+   
     @purchase_records = PurchaseRecordShoppingInformation.new(purchase_record_params)
     if @purchase_records.valid?
       pay_item
@@ -21,6 +26,8 @@ class PurchaseRecordsController < ApplicationController
     else
       render :index
     end
+
+  
   end
 
   
@@ -40,10 +47,17 @@ class PurchaseRecordsController < ApplicationController
       )
   end
 
+
   def contributor_confirmation
-    unless @purchase_record_id.present?
+
+    if @product_information.purchase_record.present?
     redirect_to root_path 
     end
+  end  
+
+
+  def set_product_information
+    @product_information = ProductInformation.find(params[:product_information_id])
   end
  
 
