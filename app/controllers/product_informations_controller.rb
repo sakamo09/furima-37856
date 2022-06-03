@@ -10,6 +10,8 @@ class ProductInformationsController < ApplicationController
   
   def index
     @product_informations = ProductInformation.all.order("created_at DESC")
+
+    
   end
 
   def new

@@ -17,6 +17,7 @@ RSpec.describe PurchaseRecordShoppingInformation, type: :model do
     end
 
     it 'building_name,が空でも登録できる' do
+      @purchase_record_shopping_information.building_name = ''
       expect(@purchase_record_shopping_information).to be_valid
     end
 
@@ -66,17 +67,24 @@ RSpec.describe PurchaseRecordShoppingInformation, type: :model do
       expect(@purchase_record_shopping_information.errors.full_messages).to include("Telephone number can't be blank")
     end
 
-    it 'telephone_number、は9桁以下では購入できない' do
+    it 'telephone_number,は9桁以下では購入できない' do
       @purchase_record_shopping_information.telephone_number = '000'
       @purchase_record_shopping_information.valid?
       expect(@purchase_record_shopping_information.errors.full_messages).to include("Telephone number is invalid")
     end
 
-    it 'telephone_number、は12桁以上では購入できない' do
+    it 'telephone_number,は12桁以上では購入できない' do
       @purchase_record_shopping_information.telephone_number = '000000000000000000000'
       @purchase_record_shopping_information.valid?
       expect(@purchase_record_shopping_information.errors.full_messages).to include("Telephone number is invalid")
     end
+    
+      
+      it 'telephone_number,に半角英数以外が含まれている時は購入できない' do
+        @purchase_record_shopping_information.telephone_number = 'ああ'
+        @purchase_record_shopping_information.valid?
+        expect(@purchase_record_shopping_information.errors.full_messages).to include("Telephone number is invalid")
+      end
 
 
     it "tokenが空では購入できないこと" do
@@ -98,6 +106,7 @@ RSpec.describe PurchaseRecordShoppingInformation, type: :model do
        expect(@purchase_record_shopping_information.errors.full_messages).to include("Product information can't be blank")
      end
 
+   
 
 
 

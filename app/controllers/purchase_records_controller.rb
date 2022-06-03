@@ -50,7 +50,7 @@ class PurchaseRecordsController < ApplicationController
 
   def contributor_confirmation
 
-    if @product_information.purchase_record.present?
+    if @product_information.purchase_record.present? ||current_user.id ==@user
     redirect_to root_path 
     end
   end  
