@@ -1,19 +1,22 @@
 <%= render "shared/header" %>
 
 <%# 商品の概要 %>
+
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
       <%= @product_information.name %>
     </h2>
     <div class="item-img-content">
+   
       <%= image_tag @product_information.image, class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
+      <% if @product_information.purchase_record.present?%>
       <div class="sold-out">
-        <span>Sold Out!!</span>
+      <span>Sold Out!!</span>
       </div>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+      <% end %>
     </div>
+  
     <div class="item-price-box">
       <span class="item-price">
        ¥<%= @product_information.price %>
@@ -23,14 +26,14 @@
       </span>
     </div>
 
-   <% if user_signed_in? %>
+   <% if user_signed_in? && @product_information.purchase_record == nil %>
     <% if current_user.id == @product_information.user_id %>
-    <%= link_to "商品の編集", edit_product_information_path, method: :get, class: "item-red-btn" %>
+    <%= link_to "商品の編集", edit_product_information_path(@product_information), method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
-    <%= link_to "削除", product_information_path, method: :delete, class:"item-destroy" %>
+    <%= link_to "削除", product_information_path(@product_information), method: :delete, class:"item-destroy" %>
     
     <% else %>
-    <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+    <%= link_to "購入画面に進む", product_information_purchase_records_path(@product_information) ,class:"item-red-btn"%>
     <% end %>
    <% end %>
 
@@ -44,7 +47,7 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @product_information.name %></td>
+          <td class="detail-value"><%= @product_information.user.nickname %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
