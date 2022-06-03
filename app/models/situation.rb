@@ -10,6 +10,5 @@ class Situation < ActiveHash::Base
     { id: 8, name: '全体的に状態が悪い' }
   ]
   include ActiveHash::Associations
-  has_many :product_informations 
-
+  has_many :product_informations
 end
