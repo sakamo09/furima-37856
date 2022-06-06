@@ -45,3 +45,6 @@ class PurchaseRecordsController < ApplicationController
     @product_information = ProductInformation.find(params[:product_information_id])
   end
 end
+
+
+
