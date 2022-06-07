@@ -70,55 +70,55 @@ RSpec.describe ProductInformation, type: :model do
       it 'price,が¥300~¥9,999,999でないと登録できない' do
         @product_information.price = '10'
         @product_information.valid?
-        expect(@product_information.errors.full_messages).to include('Price is invalid')
+        expect(@product_information.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
 
       it 'price,が半角数値でないと登録できない' do
         @product_information.price = '８８８８'
         @product_information.valid?
-        expect(@product_information.errors.full_messages).to include('Price is invalid')
+        expect(@product_information.errors.full_messages).to include("Price is not a number")
       end
 
       it 'category_id,に「---」が選択されている場合は出品できない' do
         @product_information.category_id = '1'
         @product_information.valid?
-        expect(@product_information.errors.full_messages).to include("Category can't be blank")
+        expect(@product_information.errors.full_messages).to include("Category を入力してください")
       end
 
       it 'situation_id,に「---」が選択されている場合は出品できない' do
         @product_information.situation_id = '1'
         @product_information.valid?
-        expect(@product_information.errors.full_messages).to include("Situation can't be blank")
+        expect(@product_information.errors.full_messages).to include("Situation を入力してください")
       end
 
       it 'load_id,に「---」が選択されている場合は出品できない' do
         @product_information.load_id = '1'
         @product_information.valid?
-        expect(@product_information.errors.full_messages).to include("Load can't be blank")
+        expect(@product_information.errors.full_messages).to include("Load を入力してください")
       end
 
       it 'area_id,に「---」が選択されている場合は出品できない' do
         @product_information.area_id = '1'
         @product_information.valid?
-        expect(@product_information.errors.full_messages).to include("Area can't be blank")
+        expect(@product_information.errors.full_messages).to include("Area を入力してください")
       end
 
       it 'period_id,に「---」が選択されている場合は出品できない' do
         @product_information.period_id = '1'
         @product_information.valid?
-        expect(@product_information.errors.full_messages).to include("Period can't be blank")
+        expect(@product_information.errors.full_messages).to include("Period を入力してください")
       end
 
       it 'price,が9_999_999円を超えると出品できない' do
         @product_information.price = '9999999999999'
         @product_information.valid?
-        expect(@product_information.errors.full_messages).to include('Price is invalid')
+        expect(@product_information.errors.full_messages).to include("Price must be less than or equal to 999999")
       end
 
       it 'user,が紐付いていなければ出品できない' do
         @product_information.user = nil
         @product_information.valid?
-        expect(@product_information.errors.full_messages).to include('User must exist')
+        expect(@product_information.errors.full_messages).to include("User must exist")
       end
     end
   end
