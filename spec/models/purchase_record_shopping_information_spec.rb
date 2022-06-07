@@ -30,7 +30,7 @@ RSpec.describe PurchaseRecordShoppingInformation, type: :model do
         it 'postal_code,は「3桁ハイフン4桁」の半角文字列のみ保存可能なこと' do
           @purchase_record_shopping_information.postal_code = '000'
           @purchase_record_shopping_information.valid?
-          expect(@purchase_record_shopping_information.errors.full_messages).to include("Postal code is invalid")
+          expect(@purchase_record_shopping_information.errors.full_messages).to include('Postal code is invalid')
         end
 
         it 'area_id,が空では購入できない' do
@@ -42,7 +42,7 @@ RSpec.describe PurchaseRecordShoppingInformation, type: :model do
         it 'area_id,に「---」が選択されている場合は購入できない' do
           @purchase_record_shopping_information.area_id = '1'
           @purchase_record_shopping_information.valid?
-          expect(@purchase_record_shopping_information.errors.full_messages).to include("Area を入力してください")
+          expect(@purchase_record_shopping_information.errors.full_messages).to include('Area を入力してください')
         end
 
         it 'municipalities,が空では購入できない' do
@@ -66,19 +66,19 @@ RSpec.describe PurchaseRecordShoppingInformation, type: :model do
         it 'telephone_number,は9桁以下では購入できない' do
           @purchase_record_shopping_information.telephone_number = '000'
           @purchase_record_shopping_information.valid?
-          expect(@purchase_record_shopping_information.errors.full_messages).to include("Telephone number is invalid")
+          expect(@purchase_record_shopping_information.errors.full_messages).to include('Telephone number is invalid')
         end
 
         it 'telephone_number,は12桁以上では購入できない' do
           @purchase_record_shopping_information.telephone_number = '000000000000000000000'
           @purchase_record_shopping_information.valid?
-          expect(@purchase_record_shopping_information.errors.full_messages).to include("Telephone number is invalid")
+          expect(@purchase_record_shopping_information.errors.full_messages).to include('Telephone number is invalid')
         end
 
         it 'telephone_number,に半角英数以外が含まれている時は購入できない' do
           @purchase_record_shopping_information.telephone_number = 'ああ'
           @purchase_record_shopping_information.valid?
-          expect(@purchase_record_shopping_information.errors.full_messages).to include("Telephone number is invalid")
+          expect(@purchase_record_shopping_information.errors.full_messages).to include('Telephone number is invalid')
         end
 
         it 'tokenが空では購入できないこと' do
