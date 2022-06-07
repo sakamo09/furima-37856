@@ -36,15 +36,10 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def contributor_confirmation
-     if @product_information.purchase_record.present? || current_user.id == @product_information.user.id
-    redirect_to root_path
-  end
+    redirect_to root_path if @product_information.purchase_record.present? || current_user.id == @product_information.user.id
   end
 
   def set_product_information
     @product_information = ProductInformation.find(params[:product_information_id])
   end
 end
-
-
-
